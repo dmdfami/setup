@@ -54,6 +54,7 @@ for n in nodes:
   echo "  mac <name>         SSH by name"
   echo "  mac <name> lan     SSH Mac via LAN"
   echo "  mac grant <name>   Grant remote control permissions (one-time)"
+  echo "  mac screen <name>  Remote screen sharing (VNC via tunnel)"
   echo ""
 
   # Save items for selection
@@ -218,6 +219,33 @@ fi
 # Named access
 NAME="$1"
 MODE="${2:-tunnel}"
+
+# mac screen <name> [lan] — VNC screen sharing via SSH tunnel
+if [ "$NAME" = "screen" ]; then
+  SCREEN_TARGET="${2:?Usage: mac screen <name> [lan]}"
+  SCREEN_MODE="${3:-tunnel}"
+  RESULT=$(resolve_mac "$SCREEN_TARGET" "$SCREEN_MODE")
+  [ -z "$RESULT" ] && echo "Mac '$SCREEN_TARGET' not found." && exit 1
+  IFS='|' read -r method addr <<< "$RESULT"
+  echo "  → Screen sharing $SCREEN_TARGET ($method)"
+  echo "  Forwarding VNC port 5900 → localhost:5901..."
+  if [ "$method" = "tunnel" ]; then
+    host=$(echo "$addr" | sed 's|https://||')
+    ssh -L 5901:localhost:5900 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null \
+        -o ProxyCommand="cloudflared access ssh --hostname $host" \
+        "$SCREEN_TARGET@$host" -N &
+  else
+    ssh -L 5901:localhost:5900 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null \
+        "$SCREEN_TARGET@$addr" -N &
+  fi
+  SSH_PID=$!
+  sleep 2
+  echo "  Opening Screen Sharing..."
+  open vnc://localhost:5901
+  echo "  Press Ctrl+C to disconnect."
+  wait $SSH_PID
+  exit 0
+fi
 
 # mac grant <name> [lan] — batch-request automation permissions
 if [ "$NAME" = "grant" ]; then
