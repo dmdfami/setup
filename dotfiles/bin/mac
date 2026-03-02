@@ -240,8 +240,15 @@ if [ "$NAME" = "screen" ]; then
   fi
   SSH_PID=$!
   sleep 2
+  # Fetch password from CF Worker for auto-login
+  SCREEN_PASS=$(curl -s "$API/password/$SCREEN_TARGET" -H "X-Token: $TOKEN" 2>/dev/null)
+  [ -z "$SCREEN_PASS" ] && SCREEN_PASS=$(ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null "$SCREEN_TARGET@$addr" 'cat ~/.ssh/.keychain-pass 2>/dev/null' 2>/dev/null)
   echo "  Opening Screen Sharing..."
-  open vnc://localhost:5901
+  if [ -n "$SCREEN_PASS" ]; then
+    open "vnc://$SCREEN_TARGET:$SCREEN_PASS@localhost:5901"
+  else
+    open vnc://localhost:5901
+  fi
   echo "  Press Ctrl+C to disconnect."
   wait $SSH_PID
   exit 0
