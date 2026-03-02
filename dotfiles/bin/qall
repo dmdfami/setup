@@ -1,0 +1,13 @@
+#!/bin/bash
+# Quit all visible GUI apps except Finder
+osascript -e '
+tell application "System Events"
+  set quitapps to name of every application process whose visible is true and name is not "Finder"
+  repeat with appName in quitapps
+    try
+      tell application appName to quit
+    end try
+  end repeat
+end tell
+'
+echo "All apps closed."

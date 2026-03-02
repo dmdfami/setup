@@ -1,0 +1,17 @@
+{
+  "name": "dmdfami-setup",
+  "version": "1.0.0",
+  "description": "One-command Mac setup & management toolkit",
+  "type": "module",
+  "bin": {
+    "dmdfami-setup": "./bin/cli.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dmdfami/setup.git"
+  },
+  "license": "MIT"
+}

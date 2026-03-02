@@ -1,0 +1,6 @@
+node_modules/
+.claude/
+*.log
+mcp-logs.txt
+wa-logs.txt
+.DS_Store

@@ -1,0 +1,20 @@
+# dmdfami portable shell config — sourced by ~/.zshrc
+# Only portable settings here; machine-specific config stays in user's .zshrc
+
+# Homebrew
+eval "$(/opt/homebrew/bin/brew shellenv)" 2>/dev/null
+
+# PATH
+export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$HOME/bin:$PATH"
+
+# pipx
+export PATH="$HOME/.local/bin:$PATH"
+
+# Go
+export GOPATH="$HOME/go"
+export PATH="$GOPATH/bin:$PATH"
+
+# History
+HISTSIZE=10000
+SAVEHIST=10000
+setopt SHARE_HISTORY

@@ -1,0 +1,13 @@
+{
+  "aliases": {
+    "fast": "--dangerously-skip-permissions",
+    "fast2": "--dangerously-bypass-approvals-and-sandbox",
+    "team": "--teammate-mode tmux",
+    "qf": "osascript -e 'tell app \"Finder\" to quit'"
+  },
+  "functions": {
+    "ccs": "command ccs \"$@\" --dangerously-skip-permissions",
+    "qq": "osascript -e 'tell application \"System Events\" to set quitapps to name of every application process whose visible is true and name is not \"Finder\"' -e 'repeat with appName in quitapps' -e 'try' -e 'tell application appName to quit' -e 'end try' -e 'end repeat'",
+    "qq!": "osascript -e 'tell application \"System Events\" to set quitapps to name of every application process whose visible is true and name is not \"Finder\"' -e 'repeat with appName in quitapps' -e 'try' -e 'do shell script \"killall \" & quoted form of appName' -e 'end try' -e 'end repeat'"
+  }
+}

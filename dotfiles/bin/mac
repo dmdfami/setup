@@ -1,0 +1,21 @@
+#!/bin/bash
+# SSH manager — connects to registered Mac nodes via CF tunnel
+API="https://mac-nodes.dmd-fami.workers.dev"
+
+case "$1" in
+  list|ls)
+    curl -s "$API/nodes" | python3 -m json.tool 2>/dev/null || curl -s "$API/nodes"
+    ;;
+  connect|ssh)
+    if [ -z "$2" ]; then echo "Usage: mac connect <hostname>"; exit 1; fi
+    TUNNEL=$(curl -s "$API/node/$2" | python3 -c "import sys,json; print(json.load(sys.stdin).get('tunnel_url',''))" 2>/dev/null)
+    if [ -z "$TUNNEL" ]; then echo "Node '$2' not found"; exit 1; fi
+    echo "Connecting to $2 via $TUNNEL..."
+    ssh -o ProxyCommand="cloudflared access ssh --hostname %h" "$USER@${TUNNEL#https://}"
+    ;;
+  *)
+    echo "Usage: mac <list|connect> [hostname]"
+    echo "  mac list              — show registered nodes"
+    echo "  mac connect <host>    — SSH via CF tunnel"
+    ;;
+esac

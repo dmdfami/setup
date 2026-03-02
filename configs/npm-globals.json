@@ -1,0 +1,7 @@
+{
+  "packages": [
+    { "name": "pnpm", "package": "pnpm", "cmd": "pnpm" },
+    { "name": "wrangler", "package": "wrangler", "cmd": "wrangler" },
+    { "name": "repomix", "package": "repomix", "cmd": "repomix" }
+  ]
+}
