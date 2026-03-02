@@ -5,7 +5,7 @@ import { hasCommand, run, runVisible, getVersion } from '../lib/shell.mjs';
 export default {
   name: 'system-prereqs',
   order: 1,
-  description: 'System prerequisites (Homebrew, Node.js)',
+  description: 'Công cụ hệ thống (Homebrew, Node.js)',
   dependencies: [],
 
   async detect() {

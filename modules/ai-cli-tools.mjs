@@ -11,6 +11,8 @@ const AI_TOOLS = [
   { name: 'CCS', cmd: 'ccs', install: 'npm i -g @kaitranntt/ccs', type: 'npm' },
   { name: 'Repomix', cmd: 'repomix', install: 'npm i -g repomix', type: 'npm' },
   { name: 'Firecrawl', cmd: 'firecrawl', install: 'npm i -g firecrawl-cli', type: 'npm' },
+  { name: 'Copilot CLI', cmd: 'copilot', install: 'gh extension install github/gh-copilot', type: 'gh-ext' },
+  { name: 'Droid CLI', cmd: 'droid', install: 'npm i -g @anthropic-ai/droid', type: 'npm' },
   { name: 'Antigravity', cmd: null, install: 'brew install --cask antigravity-tools', type: 'cask',
     detect: () => existsSync('/Applications/Antigravity.app') },
 ];
@@ -18,7 +20,7 @@ const AI_TOOLS = [
 export default {
   name: 'ai-cli-tools',
   order: 4,
-  description: 'AI CLI tools (install/update)',
+  description: 'Công cụ AI dòng lệnh (Claude, Codex, Gemini...)',
   dependencies: ['system-prereqs'],
 
   async detect() {
@@ -52,7 +54,10 @@ export default {
 
     for (const tool of toInstall) {
       console.log(`    Installing ${tool.name}...`);
-      try { runVisible(tool.install); } catch { console.log(`    Failed to install ${tool.name}`); }
+      try {
+        if (tool.type === 'gh-ext') runVisible(tool.install);
+        else runVisible(tool.install);
+      } catch { console.log(`    Failed to install ${tool.name}`); }
     }
 
     // Claude Code credentials export (special handling)

@@ -8,7 +8,7 @@ const DOTFILES_DIR = join(__dirname, '..', 'dotfiles');
 export default {
   name: 'dotfiles',
   order: 7,
-  description: 'Dotfiles sync (shell config)',
+  description: 'Đồng bộ cấu hình shell (.zshrc, PATH...)',
   dependencies: ['system-prereqs'],
 
   async detect() {

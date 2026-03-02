@@ -9,7 +9,7 @@ const CONFIGS_DIR = join(__dirname, '..', 'configs');
 export default {
   name: 'dev-tools',
   order: 6,
-  description: 'Dev tools (brew + npm globals)',
+  description: 'Công cụ phát triển (brew + npm)',
   dependencies: ['system-prereqs'],
 
   async detect() {

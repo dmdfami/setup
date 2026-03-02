@@ -30,7 +30,7 @@ function detectPlatforms() {
 export default {
   name: 'skills',
   order: 3,
-  description: 'AI Skills pack (CK skills installer)',
+  description: 'Bộ kỹ năng AI (CK skills, agents, rules)',
   dependencies: [],
 
   async detect() {

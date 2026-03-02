@@ -2,6 +2,10 @@
   "packages": [
     { "name": "pnpm", "package": "pnpm", "cmd": "pnpm" },
     { "name": "wrangler", "package": "wrangler", "cmd": "wrangler" },
-    { "name": "repomix", "package": "repomix", "cmd": "repomix" }
+    { "name": "repomix", "package": "repomix", "cmd": "repomix" },
+    { "name": "Playwright CLI", "package": "@playwright/cli", "cmd": "playwright" },
+    { "name": "RMBG CLI", "package": "rmbg-cli", "cmd": "rmbg" },
+    { "name": "UIPro CLI", "package": "uipro-cli", "cmd": "uipro" },
+    { "name": "ZMP CLI", "package": "zmp-cli", "cmd": "zmp" }
   ]
 }

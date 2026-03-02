@@ -3,7 +3,20 @@
     "fast": "--dangerously-skip-permissions",
     "fast2": "--dangerously-bypass-approvals-and-sandbox",
     "team": "--teammate-mode tmux",
-    "qf": "osascript -e 'tell app \"Finder\" to quit'"
+    "qf": "osascript -e 'tell app \"Finder\" to quit'",
+    "ssh": "/usr/bin/ssh",
+    "tran": "claude-code-transcripts",
+    "dbbackup": "/Users/david/projects/datacenter/tools/scripts/backup-db.sh",
+    "backupdb": "/Users/david/projects/datacenter/tools/scripts/backup-db.sh",
+    "copilot": "export GH_TOKEN=$(/opt/homebrew/bin/gh auth token) && /Users/david/.local/bin/copilot",
+    "copilot-full": "eval \"$(ssh-agent -s)\" 2>/dev/null; ssh-add --apple-use-keychain ~/.ssh/id_ed25519 2>/dev/null || true; export GH_TOKEN=$(/opt/homebrew/bin/gh auth token) && /Users/david/.local/bin/copilot --yolo --no-ask-user",
+    "copilot-ssh": "eval \"$(ssh-agent -s)\" 2>/dev/null; ssh-add --apple-use-keychain ~/.ssh/id_ed25519 2>/dev/null || true; /Users/david/.local/bin/copilot --yolo",
+    "copilot-cmd": "eval \"$(ssh-agent -s)\" 2>/dev/null; ssh-add --apple-use-keychain ~/.ssh/id_ed25519 2>/dev/null || true; /Users/david/.local/bin/copilot --yolo --no-ask-user -p"
+  },
+  "global_aliases": {
+    "fast": "--dangerously-skip-permissions",
+    "fast2": "--dangerously-bypass-approvals-and-sandbox",
+    "team": "--teammate-mode tmux"
   },
   "functions": {
     "ccs": "command ccs \"$@\" --dangerously-skip-permissions",
