@@ -2,11 +2,16 @@
 
 ## Overview
 - **Priority**: P2
-- **Status**: Complete
+- **Status**: ✅ COMPLETE
 - **Effort**: 2h
+- **Completed**: 2026-03-02
 - **Depends on**: Phase 1, 2
 
 Three modules: terminal shortcuts, dotfiles sync, dev tools (Brewfile + npm globals).
+
+## Completion Status
+
+All three modules implemented. Shortcuts use source-line pattern, dotfiles never overwrite, dev-tools via Brewfile + npm globals.
 
 ## Files to Create
 
@@ -63,15 +68,15 @@ Strategy: Generate `~/.dmdfami/shortcuts.sh` from `configs/aliases.json` + inlin
 `brew bundle --file=configs/Brewfile` + `npm i -g` loop.
 
 ## Todo List
-- [ ] Create configs/aliases.json (shortcut definitions)
-- [ ] Implement modules/shortcuts.mjs
-- [ ] Create configs/Brewfile + npm-globals.json
-- [ ] Implement modules/dev-tools.mjs
-- [ ] Extract portable dotfiles
-- [ ] Implement modules/dotfiles.mjs
-- [ ] Test each module
+- [x] Create configs/aliases.json (shortcut definitions)
+- [x] Implement modules/shortcuts.mjs
+- [x] Create configs/Brewfile + npm-globals.json
+- [x] Implement modules/dev-tools.mjs
+- [x] Extract portable dotfiles
+- [x] Implement modules/dotfiles.mjs
+- [x] Test each module
 
 ## Success Criteria
-- Shortcuts: aliases + functions available after install (new terminal session)
-- Dev tools: missing brew/npm packages installed
-- Dotfiles: source-line added, never overwrites existing .zshrc
+- [x] Shortcuts: aliases + functions available after install
+- [x] Dev tools: missing brew/npm packages installed
+- [x] Dotfiles: source-line added, never overwrites existing .zshrc

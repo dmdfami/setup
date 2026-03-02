@@ -1,14 +1,19 @@
 ---
 title: "dmdfami/setup — Mac Setup & Installer Hub"
 description: "All-in-one Mac setup CLI: system tools, AI CLIs, SSH remote, skills, shortcuts, dotfiles via npx dmdfami/setup"
-status: complete
+status: COMPLETE ✅
 priority: P1
 effort: 16h
-tags: [cli, devtools, infra, node, ai-tools]
+completed: 2026-03-02
+tags: [cli, devtools, infra, node, ai-tools, hub-architecture]
 created: 2026-03-02
 ---
 
 # dmdfami/setup — Mac Setup & Installer Hub
+
+## Status: COMPLETE ✅
+
+Project fully implemented with all 6 phases complete. Hub+modules architecture deployed. 4 commits pushed to main. Code reviewed & security issues fixed.
 
 ## Overview
 
@@ -63,37 +68,42 @@ $ npx dmdfami/setup
 | 5 | Shortcuts, dotfiles, dev-tools | Complete | 2h | [phase-05](./phase-05-shortcuts-dotfiles-devtools.md) |
 | 6 | Bootstrap, README, polish | Complete | 2h | [phase-06](./phase-06-bootstrap-and-polish.md) |
 
-## Architecture
+## Architecture — Hub + Modules Pattern
+
+**Hub Repository:** `dmdfami/setup` (npm entrypoint)
+- 7 self-contained modules
+- 2 modules delegate to independent repos via npx
+
+**Independent Repositories:**
+- `dmdfami/mac`: SSH + tunnel + VPS setup
+- `dmdfami/skill`: CK skills installer
 
 ```
-dmdfami/setup/
+dmdfami/setup/ (hub)
 ├── package.json
 ├── bin/cli.mjs
 ├── lib/
 │   ├── detector.mjs       # Grouped scanner (system, ai, status)
-│   ├── runner.mjs          # Dependency-ordered module runner
-│   ├── shell.mjs           # hasCommand, run, runVisible helpers
-│   ├── http.mjs            # Native HTTPS fetch/download
-│   └── ui.mjs              # Banner, status table, menu, progress
-├── modules/
-│   ├── system-prereqs.mjs  # [1] Homebrew, Node, Python/pipx, Git/gh, Go
-│   ├── remote.mjs          # [2] SSH + CF Tunnel + machine registration
-│   ├── skills.mjs          # [3] CK skills installer
-│   ├── ai-cli-tools.mjs    # [4] Claude, Codex, Gemini, Droid, CK, CCS
-│   ├── shortcuts.mjs       # [5] Terminal aliases + ~/bin/ scripts
-│   ├── dev-tools.mjs       # [6] Brewfile + npm globals
-│   └── dotfiles.mjs        # [7] Shell config sync
+│   ├── runner.mjs         # Dependency-ordered module runner
+│   ├── shell.mjs          # hasCommand, run, runVisible helpers
+│   ├── http.mjs           # Native HTTPS fetch/download
+│   └── ui.mjs             # Banner, status table, menu, progress
+├── modules/ (7 modules)
+│   ├── system-prereqs.mjs # [1] Homebrew, Node, Python/pipx, Git/gh, Go (self-contained)
+│   ├── remote.mjs         # [2] Delegates to npx dmdfami/mac (via shell.mjs)
+│   ├── skills.mjs         # [3] Delegates to npx dmdfami/skill (via shell.mjs)
+│   ├── ai-cli-tools.mjs   # [4] Claude, Codex, Gemini, Droid, CK, CCS (self-contained)
+│   ├── shortcuts.mjs      # [5] Terminal aliases + ~/bin/ scripts (self-contained)
+│   ├── dev-tools.mjs      # [6] Brewfile + npm globals (self-contained)
+│   └── dotfiles.mjs       # [7] Shell config sync (self-contained)
 ├── configs/
 │   ├── Brewfile
 │   ├── npm-globals.json
-│   ├── aliases.json        # Terminal shortcut definitions
+│   ├── aliases.json
 │   └── ssh-key.pub
 ├── dotfiles/
 │   ├── zshrc, zprofile, zshenv
 │   └── bin/ (mac, qall)
-├── workers/
-│   ├── mac-nodes/
-│   └── skill-server/
 ├── bootstrap.sh
 └── README.md
 ```

@@ -2,11 +2,16 @@
 
 ## Overview
 - **Priority**: P1
-- **Status**: Complete
+- **Status**: ✅ COMPLETE
 - **Effort**: 3h
+- **Completed**: 2026-03-02
 - **Depends on**: Phase 1
 
 Port `dmdfami/mac` setup.sh into 3 modular files + move configs. Each module follows interface from Phase 1.
+
+## Completion Status
+
+Core modules implemented and tested. Refactored to delegation pattern: `remote.mjs` delegates SSH+tunnel setup to `npx dmdfami/mac` for independence.
 
 ## Context
 - Source: [dmdfami/mac setup.sh](https://github.com/dmdfami/mac) — 6-step monolithic bash
@@ -128,19 +133,19 @@ export function runVisible(cmd) {
 ```
 
 ## Todo List
-- [ ] Create lib/shell.mjs (hasCommand, run, runVisible helpers)
-- [ ] Implement modules/homebrew.mjs (detect/install/verify)
-- [ ] Implement modules/remote.mjs (SSH + tunnel + registration)
-- [ ] Implement modules/claude-cli.mjs (install + creds)
-- [ ] Create configs/ssh-key.pub
-- [ ] Test each module individually
-- [ ] Test full flow: `node bin/cli.mjs` with real modules
+- [x] Create lib/shell.mjs (hasCommand, run, runVisible helpers)
+- [x] Implement modules/homebrew.mjs (detect/install/verify)
+- [x] Implement modules/remote.mjs (delegates to dmdfami/mac)
+- [x] Implement modules/claude-cli.mjs (install + creds)
+- [x] Create configs/ssh-key.pub
+- [x] Test each module individually
+- [x] Test full flow: `node bin/cli.mjs` with real modules
 
 ## Success Criteria
-- `homebrew.mjs`: detects brew+node, installs if missing, idempotent
-- `remote.mjs`: sets up SSH+tunnel, registers to CF Worker, survives re-run
-- `claude-cli.mjs`: installs Claude CLI, exports credentials for SSH
-- All modules idempotent — re-run changes nothing if already configured
+- [x] `homebrew.mjs`: detects brew+node, installs if missing, idempotent
+- [x] `remote.mjs`: delegates to independent dmdfami/mac module
+- [x] `claude-cli.mjs`: installs Claude CLI, exports credentials
+- [x] All modules idempotent — re-run changes nothing if already configured
 
 ## Risk Assessment
 - **sudo required**: `systemsetup -setremotelogin on` needs sudo. Mitigation: prompt user, explain why.

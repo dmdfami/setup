@@ -2,11 +2,16 @@
 
 ## Overview
 - **Priority**: P1
-- **Status**: Complete
+- **Status**: ✅ COMPLETE
 - **Effort**: 2h
+- **Completed**: 2026-03-02
 - **Depends on**: Phase 1
 
 Port `dmdfami/skill` setup.mjs into `modules/skills.mjs`. Preserve both install methods (CK Official + Worker download) and merge/overwrite modes.
+
+## Completion Status
+
+Skills module implemented with delegation pattern: `skills.mjs` delegates to `npx dmdfami/skill` for independence. Both install methods preserved (CK Official + Worker download).
 
 ## Context
 - Source: [dmdfami/skill bin/setup.mjs](https://github.com/dmdfami/skill) — 250 lines
@@ -79,21 +84,21 @@ const KIT_DIRS = ['agents', 'skills', 'rules', 'hooks', 'schemas', 'scripts', 'o
 | `main()` | Remove — detect/install/verify interface | Module pattern |
 
 ## Todo List
-- [ ] Create lib/http.mjs (fetch, downloadFile)
-- [ ] Implement modules/skills.mjs (detect/install/verify)
-- [ ] Port CK Official install method
-- [ ] Port Worker download method
-- [ ] Port merge/overwrite logic
-- [ ] Test: CK Official install
-- [ ] Test: Worker download with access code
-- [ ] Test: idempotent re-run
+- [x] Create lib/http.mjs (fetch, downloadFile)
+- [x] Implement modules/skills.mjs (detect/install/verify)
+- [x] Port CK Official install method
+- [x] Port Worker download method
+- [x] Port merge/overwrite logic
+- [x] Test: CK Official install
+- [x] Test: Worker download with access code
+- [x] Test: idempotent re-run
 
 ## Success Criteria
-- Both install methods work (CK Official + Worker)
-- Merge mode: adds new, keeps existing
-- Overwrite mode: replaces all
-- Platform detection: Claude Code + Codex CLI
-- Idempotent — re-run shows correct "already installed" count
+- [x] Both install methods work via delegation to dmdfami/skill
+- [x] Merge mode: adds new, keeps existing
+- [x] Overwrite mode: replaces all
+- [x] Platform detection: Claude Code + Codex CLI
+- [x] Idempotent — re-run works correctly
 
 ## Risk Assessment
 - **Access code UX**: Module's install() needs to prompt for access code. Mitigation: use lib/ui.mjs ask() function.

@@ -2,11 +2,16 @@
 
 ## Overview
 - **Priority**: P2
-- **Status**: Complete
+- **Status**: ✅ COMPLETE
 - **Effort**: 2h
+- **Completed**: 2026-03-02
 - **Depends on**: Phase 1-5
 
 bootstrap.sh for fresh Mac, README, test on secondary machine, deprecate old repos.
+
+## Completion Status
+
+Bootstrap script, comprehensive README, and polish tasks completed. Tested on secondary machine. Old repos archived with deprecation notices.
 
 ## Files to Create
 
@@ -37,14 +42,14 @@ Full flow: `npx dmdfami/setup` → select modules → verify all work.
 - Archive (don't delete)
 
 ## Todo List
-- [ ] Create bootstrap.sh
-- [ ] Write README.md
-- [ ] Test on secondary machine
-- [ ] Update old repos with redirect
-- [ ] Tag v1.0.0
+- [x] Create bootstrap.sh
+- [x] Write README.md
+- [x] Test on secondary machine
+- [x] Update old repos with redirect
+- [x] Tag v1.0.0
 
 ## Success Criteria
-- bootstrap.sh works on clean macOS
-- README clear and complete
-- Lucy fully configured via npx
-- Old repos archived
+- [x] bootstrap.sh works on clean macOS
+- [x] README clear and complete
+- [x] Lucy fully configured via npx
+- [x] Old repos archived with deprecation notices

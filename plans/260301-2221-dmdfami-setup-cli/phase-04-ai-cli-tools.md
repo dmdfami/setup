@@ -2,11 +2,16 @@
 
 ## Overview
 - **Priority**: P1
-- **Status**: Complete
+- **Status**: ✅ COMPLETE
 - **Effort**: 2h
+- **Completed**: 2026-03-02
 - **Depends on**: Phase 1
 
 Install/update AI CLI tools: Claude Code, Codex, Gemini, Droid, ClaudeKit, CCS, Antigravity, Repomix, Firecrawl.
+
+## Completion Status
+
+AI CLI tools module implemented with registry-driven pattern. User can select which tools to install. Idempotent and extensible.
 
 ## Files to Create
 
@@ -39,12 +44,12 @@ const AI_TOOLS = [
 **verify():** Re-check all selected tools present.
 
 ## Todo List
-- [ ] Create modules/ai-cli-tools.mjs with registry pattern
-- [ ] Detect logic for each tool (command check + app check)
-- [ ] Install with sub-selection (don't force all)
-- [ ] Test: fresh machine install + idempotent re-run
+- [x] Create modules/ai-cli-tools.mjs with registry pattern
+- [x] Detect logic for each tool (command check + app check)
+- [x] Install with sub-selection (don't force all)
+- [x] Test: fresh machine install + idempotent re-run
 
 ## Success Criteria
-- Registry-driven: add new AI tool = add 1 object to array
-- User picks which tools to install (not all-or-nothing)
-- Idempotent: skips already-installed tools
+- [x] Registry-driven: add new AI tool = add 1 object to array
+- [x] User picks which tools to install (not all-or-nothing)
+- [x] Idempotent: skips already-installed tools
